@@ -11,6 +11,10 @@ const addTask = (evento) => {
     const value = input.value;
     const date = calendar.value;
     const dateFormat = moment(date).format("DD/MM/YYYY");
+
+    if (value == "" || date == "") {
+        return;
+    };
     
     input.value = '';
     calendar.value = '';
@@ -27,7 +31,7 @@ const addTask = (evento) => {
 
     const task = createTask(taskObj)
     list.appendChild(task);
-  }
+}
   
 export const createTask = ({value, dateFormat}) => {
     const task = document.createElement('li');
