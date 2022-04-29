@@ -1,5 +1,6 @@
 import checkComplete from './checkComplete.js';
 import deleteIcon from './deleteIcon.js';
+import { displayTasks } from './readTasks.js';
 
 
 const addTask = (evento) => {
@@ -24,14 +25,14 @@ const addTask = (evento) => {
         dateFormat
       };
 
+    list.innerHTML = '';
+
     const tasklist = JSON.parse(localStorage.getItem("tasks")) || [];
     tasklist.push({value, dateFormat})
     //objeto para almacenar datos en el navegador y que queden persistentes. 
     localStorage.setItem("tasks", JSON.stringify(tasklist));
-
-    const task = createTask(taskObj)
-    list.appendChild(task);
-}
+    displayTasks();
+    }
   
 export const createTask = ({value, dateFormat}) => {
     const task = document.createElement('li');
